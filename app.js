@@ -1,30 +1,26 @@
-// // function greet() {
-// //     console.log("hi");
-// // }
-// // greet();
-// // let greet = () => console.log('hi');
-// // greet();
-// // function logGreeting(fn) {
-// //     fn();
-// // }
-// // let logGreeting = (fn) => fn();
-// // logGreeting(greet);
-// greet = () => console.log("hi");
-// greet();
-// // logGreeting = (fn) => fn();
-// let logGreeting=(fn)=>fn();
-// logGreeting(greet);
-// greetMe = () =>  console.log("hi cesar"),
-// // let greetMe = function(){
-// //     console.log("hi cesar");
-// // }
+// function Person(firstname, lastname){
+//     this.firstname = firstname;
+//     this.lastname = lastname;
+// }
 
-// greetMe();
+// var john = new Person('john', 'doe');
+//primitives
+function change(b) {
+    b = 2;
+}
 
-// logGreeting(greetMe);
+var a = 1;
+change(a);
+console.log(a);
 
-// logGreeting(() => console.log("hi world!"));
+function changeObject(d) {
+    d.prop1 = function() {};
+    d.prop2 = {};
+}
+//passs by reference
+var c = {};//empty object
+c.prop1 = {};
+changeObject(c);
+console.log(c);
 
-var greet = require('./greet');
 
-greet();

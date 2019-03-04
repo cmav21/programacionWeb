@@ -14,6 +14,6 @@ greet3b.greet();
 var greet4 = require('./greet4');
 var grtr = new greet4();
 grtr.greet();
-
+//revealing object pattern
 var greet5 = require('./greet5');
 greet5.greet();

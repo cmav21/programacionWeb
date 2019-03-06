@@ -1,19 +1,29 @@
-var greet = require('./greet1');
-greet();
+//Object properties and methods
+var obj = {
+    greet: 'hello'
+}
 
-var greet2 = require('./greet2').greet;
-greet2();
+console.log(obj.greet);
+console.log(obj['greet']);
+var prop = 'greet';
+console.log(obj[prop]);
 
-var greet3 = require('./greet3');
-greet3.greet();
+//functions and arrays
 
-var greet3b = require('./greet3');
-//Cuando se crea un instancia de require en diferentes objetos, todos se refieren a la misma instancia
-greet3b.greet();
-//De esta forma se pueden hacer varias instancias de un objeto
-var greet4 = require('./greet4');
-var grtr = new greet4();
-grtr.greet();
-//revealing object pattern
-var greet5 = require('./greet5');
-greet5.greet();
+var arr = [];
+
+arr.push(function(){
+    console.log('Hello world!');
+});
+
+arr.push(function(){
+    console.log('Hello world!!');
+});
+
+arr.push(function(){
+    console.log('Hello world!!!');
+});
+
+arr.forEach(function(item){
+    item();
+})

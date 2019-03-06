@@ -1,14 +1,17 @@
 //Object properties and methods
 //we create an instance of emmiter
-var Emmiter = require('./emmiter')
+//if we require events we can add and use every event that we want
+var Emmiter = require('events');
 
 var emtr = new Emmiter();
+
+var eventConfig = require('./config').events;
 //adding events
-emtr.on('greet', function(){
+emtr.on(eventConfig.GREET, function(){
     console.log("somewhere, someone said hello");
 })
 
-emtr.on('greet', function(){
+emtr.on(eventConfig.GREET, function(){
     console.log("A greeting occured!");
 })
 
@@ -45,3 +48,6 @@ arr.push(function(){
 arr.forEach(function(item){
     item();
 })
+
+//magical string
+//words that have a significal meaning in our code

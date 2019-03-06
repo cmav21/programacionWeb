@@ -1,4 +1,16 @@
 //Object properties and methods
+var Emmiter = require('./emmiter')
+
+var emtr = new Emmiter();
+
+emtr.on('greet', function(){
+    console.log("somewhere, someone said hello");
+})
+
+emtr.on('greet', function(){
+    console.log("A greeting occured!");
+})
+
 var obj = {
     greet: 'hello'
 }

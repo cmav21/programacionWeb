@@ -1,53 +1,52 @@
-//Object properties and methods
-//we create an instance of emmiter
-//if we require events we can add and use every event that we want
-var Emmiter = require('events');
+// var person = {
+//     firstname: '',
+//     lastname: '',
+//     greet: function(){
+//         return `${this.firstname} ${this.lastname}`;
+//     }
+// }
 
-var emtr = new Emmiter();
+// var john = Object.create(person);
+// john.firstname = 'john';
+// john.lastname = 'doe';
 
-var eventConfig = require('./config').events;
-//adding events
-emtr.on(eventConfig.GREET, function(){
-    console.log("somewhere, someone said hello");
-})
+// console.log(john.greet());
 
-emtr.on(eventConfig.GREET, function(){
-    console.log("A greeting occured!");
-})
+// var jane = Object.create(person);
+// jane.firstname = 'jane';
+// jane.lastname = 'doe';
 
-//execute that method
-emtr.emit('greet');
+// console.log(jane.greet());
 
-//creating an object
+// var EventEmmiter = require('events');
+// var util = require('util');
+
+// function Greetr(){
+//     this.greeting = 'Hello world';
+// }
+
+// util.inherits(Greetr, EventEmmiter);
+
+// Greetr.prototype.greet = function(data){
+//     console.log(this.greeting + ' ' + data);
+//     this.emit('greet',data);
+// }
+
+// var  greeter1 = new Greetr();
+
+// greeter1.on('greet', function(data){
+//     console.log('someone greeted!: ' + data);
+// });
+
+// greeter1.greet('cesar');
+
 var obj = {
-    greet: 'hello'
+    name: 'John Doe',
+    greet: function(param){
+        console.log(`Hello ${this.name}`);
+    }   
 }
-//acceding to the object's property by string index
-console.log(obj.greet);
-console.log(obj['greet']);
-var prop = 'greet';
-console.log(obj[prop]);
 
-//functions and arrays
-
-var arr = [];
-//adding methods to the array
-
-arr.push(function(){
-    console.log('Hello world!');
-});
-
-arr.push(function(){
-    console.log('Hello world!!');
-});
-
-arr.push(function(){
-    console.log('Hello world!!!');
-});
-
-arr.forEach(function(item){
-    item();
-})
-
-//magical string
-//words that have a significal meaning in our code
+obj.greet();
+obj.greet.call({name: 'Jane Doe'});
+obj.greet.apply({name: 'Jane Doe'});

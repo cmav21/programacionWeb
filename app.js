@@ -1,20 +1,27 @@
-'use strict'//Para teber una sintaxis mas estricta
+    
+// var person = {
+//     firstname: 'John',
+//     lastname: 'Doe',
+//     greet: () => console.log(`Hello ${person.firstname} ${person.lastname}`)
+//     // greet: function(){
+//     //     console.log("Hello, " + this.firstname + ' ' + this.lastname);
+//     // }
+// };
 
-//Declaracion de clase y todas las clases declaradas dentro estan en la cadena de prototipo
-class Person {
-    constructor(firstname, lastname){
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
+// person.greet();
 
-    greet(){
-        console.log('Hello ' + this.firstname + ' ' + this.lastname);
-    }
+// console.log(person['firstname']);
+
+function Person(firstname, lastname){
+    this.firstname = firstname;
+    this.lastname = lastname;
 }
 
-// Person.prototype.greet = function(){
-//     console.log(`Hello, ${this.firstname} ${this.lastname}`);
-// }
+// Person.prototype.greet = () => console.log(`Hello! ${Person.firstname} ${Person.lastname}`);
+
+Person.prototype.greet = function() {
+    console.log("Hello " + this.firstname + ' ' + this.lastname);
+}
 
 var John = new Person('john', 'Doe');
 John.greet();
@@ -22,7 +29,4 @@ John.greet();
 var jane = new Person('Jane', 'Doe');
 jane.greet();
 
-//__proto__  es para ver la cadena de prototipo
-console.log(John.__proto__);
-console.log(John.__proto__);
-console.log(John.__proto__ === jane.__proto__);
+console.log(John.__proto__)

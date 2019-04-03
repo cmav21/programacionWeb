@@ -1,26 +1,27 @@
-// function Person(firstname, lastname){
-//     this.firstname = firstname;
-//     this.lastname = lastname;
-// }
+'use strict';
 
-// var john = new Person('john', 'doe');
-//primitives
-function change(b) {
-    b = 2;
+var EventEmmiter = require('events');
+var util = require('util');
+
+class Greeter extends EventEmmiter{
+    constructor(firstname, lastname){
+        super();//call super constructor
+        // this.firstname = firstname;
+        // this.lastname = lastname;
+        this.greeting = 'Hello world';
+    }
+
+    greet(data){
+        console.log(`${this.greeting} ${data}`);
+        this.emit('greet', data);
+    }
+    
+    // greet(){
+    //     console.log(`Hello ${this.firstname} ${this.lastname}`);
+    // }
 }
 
-var a = 1;
-change(a);
-console.log(a);
+var greeter1 = new Greeter('john', 'doe');
+greeter1.greet('tony');
 
-function changeObject(d) {
-    d.prop1 = function() {};
-    d.prop2 = {};
-}
-//passs by reference
-var c = {};//empty object
-c.prop1 = {};
-changeObject(c);
-console.log(c);
-
-
+util.inherits(Greeter, EventEmmiter);

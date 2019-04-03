@@ -1,27 +1,8 @@
-'use strict';
+var http = require('http');
+var fs = require('fs');
 
-var EventEmmiter = require('events');
-var util = require('util');
-
-class Greeter extends EventEmmiter{
-    constructor(firstname, lastname){
-        super();//call super constructor
-        // this.firstname = firstname;
-        // this.lastname = lastname;
-        this.greeting = 'Hello world';
-    }
-
-    greet(data){
-        console.log(`${this.greeting} ${data}`);
-        this.emit('greet', data);
-    }
-    
-    // greet(){
-    //     console.log(`Hello ${this.firstname} ${this.lastname}`);
-    // }
-}
-
-var greeter1 = new Greeter('john', 'doe');
-greeter1.greet('tony');
-
-util.inherits(Greeter, EventEmmiter);
+http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    var html = fs.readFileSync(`${__dirname}/index.html`);
+    res.end(html);
+}).listen(1337, '127.0.0.1');

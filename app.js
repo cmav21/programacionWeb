@@ -1,32 +1,26 @@
-var http = require('http');
-var fs = require('fs');
+//Inicializa express
+var express = require('express');
+var app = express();
 
-http.createServer(function(req, res){
-    //request tiene una propiedad url que es la ruta ingresada
-    if(req.url === '/'){
-        //formato del response que sera devuelto, en este caso devuelve un html
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        //Se esta leyendo el archivo html y convertido al formato uft8
-        var html = fs.readFileSync(`${__dirname}/index.html`, 'utf8');
-        //Se sustituye el valor de la parte Message del html por la palabra hola
-        html = html.replace('{Message}', 'hola');
-        //Se envia el response
-        res.end(html);
-    }
-    else if(req.url === '/api'){
-        //Esta cabecera devuelve un json
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        //Declaracion del objeto
-        var obj = {
-            firstname: "John",
-            lastname: "Doe"
-        };
-        //Se convierte al formato json con stringify y se regresa como response
-        res.end(JSON.stringify(obj));
-    }
-    else {
-        //En caso de que la ruta no sea alguna de las anteriores se regresa un error 404
-        res.writeHead(404);
-        res.end();
-    }
-}).listen(1337, '127.0.0.1');
+//Quiere decir que port va a ser igual al valor del puerto de la variable de entorno, en caso contrario
+//inicia en el puerto 3000
+var port = process.env.PORT || 3000;
+
+//environments variables: global variables specific to the environment(server) our code is living in
+
+//http method: specific the type of action the request wishes to make
+
+
+app.get('/', (req, res)=>{
+    res.send('<html><head></head><body><h1>Hello world!</h1></body></html>');
+});
+//Ejecutar un callback en una ruta determinada dependiendo del metodo http y recibiendo un parametro
+app.get('/person/:id', (req, res)=>{
+    res.send(`<html><head></head><body><h1>Person: ${req.params.id}</h1></body></html>`);
+});
+//Ejecutar un callback en una ruta determinada dependiendo del metodo http devuelve un objeto
+app.get('/api', (req, res)=>{
+    res.json({firstname: 'john', lastname:'Doe'});
+});
+//Metodo para inicializar la aplicacion en un puerto determinado
+app.listen(port);

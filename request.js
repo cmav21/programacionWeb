@@ -18,3 +18,6 @@ request('https://api.darksky.net/forecast/98c6dde1e30901cf32db92c65f79fac9/19.24
     console.log(temperature);
     console.log(data['currently']['temperature']);
 });
+
+//api de google
+
